@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewController">
+   <children>
+      <BorderPane layoutX="25.0" layoutY="25.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="Fájl">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#menuitem_Kilepes" text="Kilépés" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Súgó">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#menuitem_Nevjegy" text="Névjegy" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="table_ID" prefWidth="152.0" text="ID" />
+                <TableColumn fx:id="table_Veznev" prefWidth="242.0" text="Vezetéknév" />
+                  <TableColumn fx:id="table_Knev" prefWidth="210.0" text="Keresztnév" />
+                  <TableColumn fx:id="table_Szilido" prefWidth="182.0" text="Szl.Idő" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#menuitem_Torol" text="Töröl" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+         </center>
+         <bottom>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="mezo_ID" layoutX="14.0" layoutY="31.0" />
+                  <TextField fx:id="mezo_Veznev" layoutX="14.0" layoutY="88.0" />
+                  <TextField fx:id="mezo_Keresztn" layoutX="14.0" layoutY="144.0" />
+                  <Label layoutX="14.0" layoutY="6.0" text="ID" />
+                  <Label layoutX="14.0" layoutY="62.0" text="Vezetéknév" />
+                  <Label layoutX="14.0" layoutY="120.0" text="Keresztnév" />
+                  <Label layoutX="195.0" layoutY="6.0" text="Születési idő" />
+                  <TextField fx:id="mezo_Szulido" layoutX="187.0" layoutY="32.0" />
+                  <Button layoutX="187.0" layoutY="88.0" mnemonicParsing="false" onAction="#button_Add" prefHeight="25.0" prefWidth="148.0" text="Hozzáad" />
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
