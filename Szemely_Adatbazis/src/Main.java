@@ -2,7 +2,11 @@
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Szemely adatbazis = new Szemely();
+		adatbazis.updateSzemely("2", "Minta","Katalin" , "2000-01-02");
+		adatbazis.showAllSzemely();
+		//adatbazis.addSzemely("Gipsz", "Jakabné", "2000-01-02");
+		
 
 	}
 
