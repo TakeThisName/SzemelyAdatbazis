@@ -9,6 +9,13 @@ public class Szemely {
 	private SimpleStringProperty knev;
 	private SimpleStringProperty szulido;
 	
+	public Szemely() {
+		super();
+		this.id = new SimpleStringProperty();
+		this.veznev = new SimpleStringProperty();
+		this.knev = new SimpleStringProperty();
+		this.szulido = new SimpleStringProperty();
+	}
 	
 	public Szemely(String id, String veznev, String knev, String szulido) {
 		super();

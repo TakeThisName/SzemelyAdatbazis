@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.SzemelyDao;
+import impl.SzemelyDaoImpl;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,6 +45,10 @@ public class ViewController implements Initializable{
     @FXML
     private TableColumn<Szemely, String> table_Szilido;
     
+    private SzemelyDao db = new SzemelyDaoImpl();
+    
+    private ObservableList<Szemely> tabla_Adatok = db.get();
+    
     @FXML
     void menuitem_Torol(ActionEvent event) {
     	Szemely szTorol = tabla.getSelectionModel().getSelectedItem();
@@ -77,7 +83,7 @@ public class ViewController implements Initializable{
     	tabla_Adatok.add(szAdd);
     }
     
-    private ObservableList<Szemely> tabla_Adatok = FXCollections.observableArrayList(); // egy üres lista személyekből
+   
 
     
     
@@ -92,14 +98,7 @@ public class ViewController implements Initializable{
 
     }
     
-    private void kezdoAdatok() {
-		Szemely sz1 = new Szemely("1", "Pusztai", "Bence", "123");
-		Szemely sz2 = new Szemely("2", "Juhász", "Bence", "456");
-		Szemely sz3 = new Szemely("3", "Kiss", "Balázs", "789");
-		tabla_Adatok.add(sz1);
-		tabla_Adatok.add(sz2);
-		tabla_Adatok.add(sz3);
-	}
+    
     
     private void tablaAdatokBeallitasa() {
     	table_ID.setCellValueFactory(cellData -> cellData.getValue().idProperty());
@@ -113,7 +112,7 @@ public class ViewController implements Initializable{
     // implements initializable <- view controllernél
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		kezdoAdatok();
+		
 		tablaAdatokBeallitasa();
 		
 	}
