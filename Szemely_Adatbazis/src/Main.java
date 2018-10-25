@@ -22,6 +22,7 @@ public class Main {
 	public static void torles() {
 		System.out.println("Kérem a felhasználó id-ját a törléshez: ");
 		String id = beolvas.next();
+		adatbazis.removeSzemely(id);
 	}
 	
 	
