@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.jboss.shrinkwrap.descriptor.api.orm10.Id;
+
 import dao.SzemelyDao;
 import impl.SzemelyDaoImpl;
 import javafx.application.Platform;
@@ -53,6 +55,9 @@ public class ViewController implements Initializable{
     void menuitem_Torol(ActionEvent event) {
     	Szemely szTorol = tabla.getSelectionModel().getSelectedItem();
     	tabla_Adatok.remove(szTorol);
+    	
+    	db.remove(szTorol);
+    	TablaFrissit();
     }
     
     @FXML
@@ -80,14 +85,26 @@ public class ViewController implements Initializable{
     			mezo_Keresztn.getText(), 
     			mezo_Szulido.getText());
     	
+    	mezo_ID.setText(szAdd.getId());
+    	mezo_Veznev.setText(szAdd.getVeznev());
+    	mezo_Keresztn.setText(szAdd.getKnev());
+    	mezo_Szulido.setText(szAdd.getSzulido());
+    	db.add(szAdd);
     	tabla_Adatok.add(szAdd);
+    	
+    	
     }
-    
+    @FXML
+    void button_Szerk(ActionEvent event) {
+    	Szemely SzemelySzerk = new Szemely();
+    	SzemelySzerk.setId(mezo_ID.getText());
+    	SzemelySzerk.setVeznev(mezo_Veznev.getText());
+    	SzemelySzerk.setKnev(mezo_Keresztn.getText());
+    	SzemelySzerk.setSzulido(mezo_Szulido.getText());
+    	db.update(SzemelySzerk);
+    	TablaFrissit();
+    }
    
-
-    
-    
-    
     @FXML
     void menuitem_Kilepes(ActionEvent event) {
     	Platform.exit();
@@ -108,7 +125,12 @@ public class ViewController implements Initializable{
     	
     	tabla.setItems(tabla_Adatok);
     }
-
+    
+    private void TablaFrissit() {
+		tabla_Adatok = db.get();
+		tabla.setItems(tabla_Adatok);
+    }
+    
     // implements initializable <- view controllernél
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

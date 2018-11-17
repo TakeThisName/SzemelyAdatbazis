@@ -2,6 +2,7 @@ package impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -51,19 +52,58 @@ public class SzemelyDaoImpl implements SzemelyDao {
 
 	@Override
 	public void add(Szemely sz) {
+		String sql = "INSERT INTO szemely (id, vezeteknev, keresztnev, szuldatum) Values(?, ?, ?, ?)";
 		
+		try {
+			Class.forName(JDBC_DRIVER);
+			Connection conn = DriverManager.getConnection(URL);
+			PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1,  sz.getId());
+				ps.setString(2,  sz.getVeznev());
+				ps.setString(3,  sz.getKnev());
+				ps.setString(4,  sz.getId());
+				ps.execute();
+				conn.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			System.err.println(e);
+		}
 
 	}
 
 	@Override
 	public void remove(Szemely sz) {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM szemely WHERE id=?";
+		
+		try {
+			Class.forName(JDBC_DRIVER);
+			Connection conn = DriverManager.getConnection(URL);
+			PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1,  sz.getId());
+				ps.execute();
+				conn.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			System.err.println(e);
+		}
 
 	}
 
 	@Override
 	public void update(Szemely sz) {
-		// TODO Auto-generated method stub
+String sql = "UPDATE szemely SET vezeteknev = ?, keresztnev = ?, szuldatum = ? WHERE id = ?";
+		
+		try {
+			Class.forName(JDBC_DRIVER);
+			Connection conn = DriverManager.getConnection(URL);
+			PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1,  sz.getVeznev());
+				ps.setString(2,  sz.getKnev());
+				ps.setString(3, sz.getSzulido());
+				ps.setString(4,  sz.getId());
+				ps.execute();
+				conn.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			System.err.println(e);
+		}
 
 	}
 

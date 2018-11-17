@@ -60,6 +60,7 @@
                   <Label layoutX="195.0" layoutY="6.0" text="Születési idő" />
                   <TextField fx:id="mezo_Szulido" layoutX="187.0" layoutY="32.0" />
                   <Button layoutX="187.0" layoutY="88.0" mnemonicParsing="false" onAction="#button_Add" prefHeight="25.0" prefWidth="148.0" text="Hozzáad" />
+                  <Button layoutX="187.0" layoutY="50.0" mnemonicParsing="false" onAction="#button_Szerk" prefHeight="25.0" prefWidth="148.0" text="Szerkeszt" />
                </children>
             </AnchorPane>
          </bottom>
